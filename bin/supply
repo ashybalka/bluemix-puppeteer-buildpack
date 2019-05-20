@@ -41,11 +41,11 @@ mkdir -p "$APT_STATE_DIR/lists/partial"
 
 APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
 
-topic "Install packages"
-apt-get $APT_OPTIONS install $PACKAGES
-
 topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
+
+topic "Install packages"
+apt-get $APT_OPTIONS install $PACKAGES
 
 for PACKAGE in $PACKAGES; do
   if [[ $PACKAGE == *deb ]]; then
