@@ -45,7 +45,7 @@ topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
 
 topic "Install packages"
-apt-get $APT_OPTIONS install $PACKAGES
+apt-get $APT_OPTIONS -y --allow-downgrades --allow-remove-essential --allow-change-held-packages -d install $PACKAGES
 
 for PACKAGE in $PACKAGES; do
   if [[ $PACKAGE == *deb ]]; then
